@@ -6,7 +6,7 @@ import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,13 +53,17 @@ public class UserController {
             throw new ValidationException("Логин не может быть пустым или содержать пробелы");
         }
         if (user.getName() == null || user.getName().isBlank()) {
-            user.setName(user.getLogin()); // Автозамена имени на логин
+            user.setName(user.getLogin());
         }
-        LocalDate birthdate = user.getBirthdate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        if (birthdate.isAfter(LocalDate.now())) {
-            log.warn("Ошибка валидации: дата рождения в будущем: {}", birthdate);
+        LocalDate parsedBirthday = getParsedBirthday(user.getBirthdate());
+        if (parsedBirthday.isAfter(LocalDate.now())) {
+            log.warn("Ошибка валидации: дата рождения в будущем: {}", parsedBirthday);
             throw new ValidationException("Дата рождения не может быть в будущем");
         }
+    }
+
+    private LocalDate getParsedBirthday(String birthday) {
+        return LocalDate.parse(birthday, DateTimeFormatter.ISO_LOCAL_DATE);
     }
 
     private long getNextId() {
