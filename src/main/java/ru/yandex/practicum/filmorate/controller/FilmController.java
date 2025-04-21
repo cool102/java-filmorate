@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
@@ -59,10 +60,15 @@ public class FilmController {
             log.warn("Ошибка валидации: дата релиза до 28 декабря 1895 года");
             throw new ValidationException("Дата релиза не может быть раньше 28 декабря 1895 года");
         }
-        if (film.getDuration() == null || film.getDuration().isNegative() || film.getDuration().isZero()) {
+        Duration parsedDuration = getParsedDuration(film.getDuration());
+        if (parsedDuration == null || parsedDuration.isNegative() || parsedDuration.isZero()) {
             log.warn("Ошибка валидации: отрицательная или нулевая продолжительность фильма");
             throw new ValidationException("Продолжительность фильма должна быть положительным числом");
         }
+    }
+
+    private Duration getParsedDuration(String duration) {
+        return Duration.ofMinutes(Long.parseLong(duration));
     }
 
     private LocalDate getParsedReleased(String releaseDate) {

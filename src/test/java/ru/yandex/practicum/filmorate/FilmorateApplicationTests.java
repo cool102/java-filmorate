@@ -24,7 +24,7 @@ class FilmorateApplicationTests {
         film.setName("Test Film");
         film.setDescription("1".repeat(201));
         film.setReleaseDate(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
-        film.setDuration(Duration.ofMinutes(120));
+        film.setDuration(String.valueOf(Duration.ofMinutes(120)));
         controller.create(film);
     }
 
@@ -57,7 +57,7 @@ class FilmorateApplicationTests {
         film.setName("Old Film");
         film.setDescription("Desc");
         film.setReleaseDate(String.valueOf(LocalDate.from(LocalDate.of(1800, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
-        film.setDuration(Duration.ofMinutes(100));
+        film.setDuration(String.valueOf(Duration.ofMinutes(100)));
         controller.create(film);
     }
 
@@ -68,7 +68,7 @@ class FilmorateApplicationTests {
         film.setName("Test");
         film.setDescription("Valid");
         film.setReleaseDate(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
-        film.setDuration(Duration.ofMinutes(-90));
+        film.setDuration(String.valueOf(Duration.ofMinutes(-90)));
         controller.create(film);
     }
 
