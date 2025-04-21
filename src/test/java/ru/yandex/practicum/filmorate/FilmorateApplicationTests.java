@@ -11,7 +11,6 @@ import ru.yandex.practicum.filmorate.model.User;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
 
 import static org.testng.Assert.assertEquals;
 

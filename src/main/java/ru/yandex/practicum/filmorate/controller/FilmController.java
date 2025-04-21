@@ -6,7 +6,7 @@ import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,8 +54,8 @@ public class FilmController {
             log.warn("Ошибка валидации: описание превышает 200 символов");
             throw new ValidationException("Максимальная длина описания фильма — 200 символов");
         }
-        LocalDate releaseDate = film.getReleaseDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        if (releaseDate.isBefore(EARLIEST_RELEASE_DATE)) {
+        LocalDate parsed = getParsedReleased(film.getReleaseDate());
+        if (parsed.isBefore(EARLIEST_RELEASE_DATE)) {
             log.warn("Ошибка валидации: дата релиза до 28 декабря 1895 года");
             throw new ValidationException("Дата релиза не может быть раньше 28 декабря 1895 года");
         }
@@ -63,6 +63,10 @@ public class FilmController {
             log.warn("Ошибка валидации: отрицательная или нулевая продолжительность фильма");
             throw new ValidationException("Продолжительность фильма должна быть положительным числом");
         }
+    }
+
+    private LocalDate getParsedReleased(String releaseDate) {
+        return LocalDate.parse(releaseDate, DateTimeFormatter.ISO_LOCAL_DATE);
     }
 
     private long getNextId() {
