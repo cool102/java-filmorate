@@ -24,7 +24,7 @@ class FilmorateApplicationTests {
         Film film = new Film();
         film.setName("Test Film");
         film.setDescription("1".repeat(201));
-        film.setReleaseDate(Date.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        film.setReleaseDate(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
         film.setDuration(Duration.ofMinutes(120));
         controller.create(film);
     }
@@ -35,7 +35,7 @@ class FilmorateApplicationTests {
         User user = new User();
         user.setEmail("user@example.com");
         user.setLogin("login");
-        user.setBirthdate(Date.from(LocalDate.now().plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        user.setBirthdate(String.valueOf(LocalDate.from(LocalDate.now().plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
         controller.create(user);
     }
 
@@ -46,7 +46,7 @@ class FilmorateApplicationTests {
         user.setEmail("user@example.com");
         user.setLogin("login123");
         user.setName("");
-        user.setBirthdate(Date.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        user.setBirthdate(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
         User created = controller.create(user);
         assertEquals(created.getName(), "login123");
     }
@@ -57,7 +57,7 @@ class FilmorateApplicationTests {
         Film film = new Film();
         film.setName("Old Film");
         film.setDescription("Desc");
-        film.setReleaseDate(Date.from(LocalDate.of(1800, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        film.setReleaseDate(String.valueOf(LocalDate.from(LocalDate.of(1800, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
         film.setDuration(Duration.ofMinutes(100));
         controller.create(film);
     }
@@ -68,7 +68,7 @@ class FilmorateApplicationTests {
         Film film = new Film();
         film.setName("Test");
         film.setDescription("Valid");
-        film.setReleaseDate(Date.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        film.setReleaseDate(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
         film.setDuration(Duration.ofMinutes(-90));
         controller.create(film);
     }
@@ -79,7 +79,7 @@ class FilmorateApplicationTests {
         User user = new User();
         user.setEmail("invalidemail.com");
         user.setLogin("login");
-        user.setBirthdate(Date.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        user.setBirthdate(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
         controller.create(user);
     }
 
@@ -89,7 +89,7 @@ class FilmorateApplicationTests {
         User user = new User();
         user.setEmail("user@example.com");
         user.setLogin("invalid login");
-        user.setBirthdate(Date.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        user.setBirthdate(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
         controller.create(user);
     }
 

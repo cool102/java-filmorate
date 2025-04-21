@@ -13,6 +13,6 @@ public class Film {
     private Long id;
     private String name;
     private String description;
-    private Date releaseDate;
+    private String releaseDate;
     private Duration duration;
 }
