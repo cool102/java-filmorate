@@ -33,7 +33,7 @@ class FilmorateApplicationTests {
         User user = new User();
         user.setEmail("user@example.com");
         user.setLogin("login");
-        user.setBirthdate(String.valueOf(LocalDate.from(LocalDate.now().plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
+        user.setBirthday(String.valueOf(LocalDate.from(LocalDate.now().plusDays(1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
         controller.create(user);
     }
 
@@ -44,7 +44,7 @@ class FilmorateApplicationTests {
         user.setEmail("user@example.com");
         user.setLogin("login123");
         user.setName("");
-        user.setBirthdate(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
+        user.setBirthday(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
         User created = controller.create(user);
         assertEquals(created.getName(), "login123");
     }
@@ -77,7 +77,7 @@ class FilmorateApplicationTests {
         User user = new User();
         user.setEmail("invalidemail.com");
         user.setLogin("login");
-        user.setBirthdate(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
+        user.setBirthday(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
         controller.create(user);
     }
 
@@ -87,7 +87,7 @@ class FilmorateApplicationTests {
         User user = new User();
         user.setEmail("user@example.com");
         user.setLogin("invalid login");
-        user.setBirthdate(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
+        user.setBirthday(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
         controller.create(user);
     }
 
