@@ -8,7 +8,6 @@ import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 import ru.yandex.practicum.filmorate.model.User;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
@@ -24,7 +23,7 @@ class FilmorateApplicationTests {
         film.setName("Test Film");
         film.setDescription("1".repeat(201));
         film.setReleaseDate(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
-        film.setDuration(String.valueOf(Duration.ofMinutes(120)));
+        film.setDuration(120L);
         controller.create(film);
     }
 
@@ -57,7 +56,7 @@ class FilmorateApplicationTests {
         film.setName("Old Film");
         film.setDescription("Desc");
         film.setReleaseDate(String.valueOf(LocalDate.from(LocalDate.of(1800, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
-        film.setDuration(String.valueOf(Duration.ofMinutes(100)));
+        film.setDuration(100L);
         controller.create(film);
     }
 
@@ -68,7 +67,7 @@ class FilmorateApplicationTests {
         film.setName("Test");
         film.setDescription("Valid");
         film.setReleaseDate(String.valueOf(LocalDate.from(LocalDate.of(2000, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
-        film.setDuration(String.valueOf(Duration.ofMinutes(-90)));
+        film.setDuration(-90L);
         controller.create(film);
     }
 
