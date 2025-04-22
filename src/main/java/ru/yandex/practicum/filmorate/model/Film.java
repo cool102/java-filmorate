@@ -1,11 +1,13 @@
 package ru.yandex.practicum.filmorate.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Film.
  */
-@Data
+@Getter
+@Setter
 public class Film {
     private Long id;
     private String name;

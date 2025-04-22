@@ -16,6 +16,10 @@ import static org.testng.Assert.assertEquals;
 @SpringBootTest
 class FilmorateApplicationTests {
 
+    @org.junit.jupiter.api.Test
+    void contextLoads() {
+    }
+
     @org.testng.annotations.Test(expectedExceptions = ValidationException.class, expectedExceptionsMessageRegExp = "Максимальная длина описания фильма — 200 символов")
     public void testFilmWithTooLongDescriptionShouldFail() {
         FilmController controller = new FilmController();
